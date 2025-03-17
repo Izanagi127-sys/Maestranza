@@ -1,0 +1,12 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Informe de Tendencia de Consumo{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Informe de Tendencia de Consumo</h2>
+    <div class="text-center">
+        <img src="data:image/png;base64,{{ graphic }}" alt="Tendencia de Consumo">
+    </div>
+</div>
+{% endblock %}

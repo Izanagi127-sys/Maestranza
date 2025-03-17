@@ -1,0 +1,72 @@
+<!-- vista_comercio.html -->
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Vista de Comercio{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Productos</h1>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div class="card h-100 shadow-sm">
+                <img class="card-img-top" src="{{ producto.imagen.url }}" alt="{{ producto.nom_producto }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.nom_producto }}</h5>
+                    <p class="card-text">{{ producto.id_marca.nombre }}</p>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    <button type="button" class="btn btn-dark btn-block" data-toggle="modal" data-target="#productoModal{{ producto.id }}">
+                        Ver Más
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="productoModal{{ producto.id }}" tabindex="-1" role="dialog" aria-labelledby="productoModalLabel{{ producto.id }}" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-dark text-white">
+                        <h5 class="modal-title" id="productoModalLabel{{ producto.id }}">{{ producto.nom_producto }}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="{{ producto.imagen.url }}" alt="{{ producto.nom_producto }}" class="img-fluid rounded">
+                            </div>
+                            <div class="col-md-8">
+                                <p><strong>SKU:</strong> {{ producto.sku }}</p>
+                                <p><strong>Nombre:</strong> {{ producto.nom_producto }}</p>
+                                <p><strong>Marca:</strong> {{ producto.id_marca.nombre }}</p>
+                                <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+                                <p><strong>Ubicación:</strong> {{ producto.ubicacion }}</p>
+                                <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+                                <p><strong>Stock:</strong> {{ producto.stock }}</p>
+                                <form method="post" action="{% url 'maest_app:vista_comercio' %}">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                                    <div class="form-group">
+                                        <label for="cantidad">Cantidad a quitar de inventario</label>
+                                        <input type="number" class="form-control" name="cantidad" id="cantidad" min="1" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-danger btn-block">Descontar de Inventario</button>
+                                </form>
+                                <form method="get" action="{% url 'maest_app:historial_precio_producto' producto.id %}">
+                                    <button type="submit" class="btn btn-dark btn-block">Historial de precio</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

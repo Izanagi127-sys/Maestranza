@@ -1,0 +1,41 @@
+
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Historial de Precios{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+    }
+    h1 {
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .graph-container {
+        width: 100%;
+        max-width: 1000px;
+        margin: auto;
+    }
+</style>
+
+
+
+<body>
+    <h1>Historial de Precios para {{ producto.nom_producto }}</h1>
+    <div class="container">
+        <div class="graph-container">
+            {{ graph_html|safe }}
+        </div>
+    </div>
+</body>
+
+{% endblock %}

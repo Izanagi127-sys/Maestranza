@@ -1,0 +1,79 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Notificaciones{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h1 class="my-4">Notificaciones</h1>
+    <ul class="list-group">
+        {% for alerta in alertas %}
+        <li class="list-group-item">
+            <strong>Producto:</strong> {{ alerta.id_prod.nom_producto }} <br>
+            <strong>SKU:</strong> {{ alerta.id_prod.sku }} <br>
+            <strong>Fecha de Alerta:</strong> {{ alerta.fecha_alerta }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script>
+     // JavaScript para actualizar las notificaciones
+ function actualizarNotificaciones() {
+    fetch("{% url 'maest_app:obtener_notificaciones' %}")
+        .then(response => response.json())
+        .then(data => {
+            const badge = document.getElementById('notificationBadge');
+            const menu = document.getElementById('notificationMenu');
+
+            menu.innerHTML = ''; // Limpiar el menú de notificaciones
+
+            if (data.length > 0) {
+                badge.style.display = 'inline';
+                badge.textContent = data.length;
+
+                data.forEach(notificacion => {
+                    const item = document.createElement('a');
+                    item.href = '#';
+                    item.className = 'dropdown-item';
+                    item.textContent = `Producto: ${notificacion.id_prod.nom_producto} (SKU: ${notificacion.id_prod.sku}) - Stock: ${notificacion.stock_actual}`;
+                    item.addEventListener('click', function() {
+                        marcarNotificacionComoLeida(notificacion.id);
+                    });
+                    menu.appendChild(item);
+                });
+            } else {
+                badge.style.display = 'none';
+                const item = document.createElement('a');
+                item.href = '#';
+                item.className = 'dropdown-item';
+                item.textContent = 'No hay nuevas notificaciones';
+                menu.appendChild(item);
+            }
+        });
+}
+
+// Función para marcar notificación como leída
+function marcarNotificacionComoLeida(id) {
+    fetch("{% url 'maest_app:marcar_notificacion_como_leida' %}", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrftoken
+        },
+        body: JSON.stringify({id: id})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            actualizarNotificaciones();
+        } else {
+            console.error('Error al marcar la notificación como leída');
+        }
+    });
+}
+
+// Actualizar las notificaciones cada 30 segundos
+setInterval(actualizarNotificaciones, 30000);
+actualizarNotificaciones(); // Llamar inmediatamente para actualizar al cargar la página
+</script>
+{% endblock %}

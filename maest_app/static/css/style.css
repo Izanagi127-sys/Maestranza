@@ -1,0 +1,340 @@
+/* inicio base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #F5F5F5;
+    color: #2F2F2F;
+    margin: 0;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: white;
+}
+
+/* inicio navbar */
+
+.banneri {
+    width: 100%;
+}
+
+.img_navb {
+    height: 100px;
+    width: 100%;
+    background-color: #2F2F2F;
+}
+
+.navbar {
+    background-size: cover;
+    background-position: center;
+    background-image: linear-gradient(to bottom, #805422, rgba(72, 111, 153, 0) 100%), url("https://images.unsplash.com/photo-1614447428943-52ec0bdbc7aa?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #ffffff;
+    padding: 10px !important;
+    display: block;
+}
+
+.navbar a:hover {
+    border-radius: 10px;
+    background-color: #674621;
+    color: #ffffff;
+}
+
+.navbar-logo {
+    width: 120px;
+    height: auto;
+    filter: invert(1);
+    border-radius: 100px;
+}
+
+.navbar-nav {
+    list-style: none;
+    margin: 17px;
+    padding: 0px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 80%;
+    flex-direction: row;
+}
+
+.nav-item {
+    position: relative;
+    margin-left: 20px;
+}
+
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #F5F5F5;
+    min-width: 160px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border-radius: 10px;
+}
+
+.dropdown-content a {
+    color: #2F2F2F;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #A6B1E1;
+    color: #ffffff;
+}
+
+.nav-item:hover .dropdown-content {
+    display: block;
+}
+
+.notification-badge {
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 5px 10px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+}
+
+/* Estilos para el menú hamburguesa */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.menu-toggle .bar {
+    height: 3px;
+    width: 25px;
+    margin: 3px 0;
+    background-color: #fff;
+    transition: 0.4s;
+}
+
+/* fin navbar */
+
+.footer-links a {
+    color: #2F2F2F;
+    text-decoration: none;
+}
+
+.footer-links a:hover {
+    text-decoration: underline;
+}
+
+.footer p {
+    margin-bottom: 0;
+}
+
+.footer .logo-text {
+    line-height: 1.2;
+}
+
+.footer {
+    font-size: 0.725rem;
+    height: 24%;
+    flex-shrink: 0;
+    margin-top: 10% !important;
+    padding-top: 30px !important;
+    padding-bottom: 10px;
+    flex-shrink: 0;
+    background-color: #4e70b9;
+    color: ghostwhite;
+    margin-top: 10% !important;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.img-footer {
+    filter: invert(1);
+    size: 30px !important;
+}
+
+/* fin base */
+
+/* inicio home */
+
+.welcome-message {
+    background-color: #F5F5F5;
+    color: #2F2F2F;
+    padding: 20px;
+    text-align: center;
+    margin: 20px 0;
+    border-radius: 8px;
+}
+
+.welcome-message h1 {
+    margin-bottom: 10px;
+    color: #835a28;
+}
+
+.welcome-message p {
+    margin-bottom: 0;
+    color: #2F2F2F;
+}
+
+.container {
+    min-width: 100%;
+}
+
+.w-100 {
+    border-radius: 10px;
+}
+
+.card-body {
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+}
+
+/* fin home */
+
+/* Media Queries para hacer responsive */
+
+@media (max-width: 992px) {
+    .navbar-nav {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .navbar-nav.active {
+        display: flex;
+    }
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    .navbar-logo {
+        width: 100px;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-item {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .nav-item a {
+        padding: 15px;
+        width: 100%;
+    }
+
+    .dropdown-content {
+        position: relative;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        height: auto;
+        padding: 10px;
+    }
+
+    .navbar-nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .welcome-message {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .card {
+        width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar {
+        padding: 5px;
+    }
+
+    .navbar-nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .welcome-message {
+        padding: 10px;
+        margin: 10px 0;
+    }
+
+    .card {
+        width: 90%;
+    }
+
+    .footer {
+        font-size: 0.65rem;
+    }
+}
+
+/* Animaciones para el menú hamburguesa */
+.menu-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+}

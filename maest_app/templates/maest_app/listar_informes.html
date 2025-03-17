@@ -1,0 +1,32 @@
+<!-- listar_informes.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Listar Informes</title>
+</head>
+<body>
+    <h1>Informes Generados</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Nombre del Archivo</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for informe in informes %}
+            <tr>
+                <td>{{ informe.nombre_archivo }}</td>
+                <td>{{ informe.fecha_creacion }}</td>
+                <td>
+                    <a href="{{ informe.archivo.url }}" download>Descargar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Listado de Alertas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Alertas de Stock Bajo</h2>
+    <ul class="list-group">
+        {% for alerta in alertas %}
+        <li class="list-group-item">
+            Producto: {{ alerta.id_prod.nom_producto }} (SKU: {{ alerta.id_prod.sku }}) - Stock Actual: {{ alerta.stock_actual }}
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+<div class="mb-5"></div>
+
+{% endblock %}

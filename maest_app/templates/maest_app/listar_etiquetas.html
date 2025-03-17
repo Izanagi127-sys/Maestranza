@@ -1,0 +1,72 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Listado de Etiquetas{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="my-4">Etiquetas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for etiqueta in etiquetas %}
+            <tr>
+                <td>{{ etiqueta.nombre }}</td>
+                <td>{{ etiqueta.descripcion }}</td>
+                <td>
+                    <a href="{% url 'maest_app:editar_etiqueta' etiqueta.id %}" class="btn btn-primary btn-sm">Editar</a>
+                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal" data-id="{{ etiqueta.id }}" data-nombre="{{ etiqueta.nombre }}">
+                        Eliminar
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Eliminar Etiqueta</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ¿Estás seguro de que deseas eliminar la etiqueta <strong id="etiquetaNombre"></strong>?
+            </div>
+            <div class="modal-footer">
+                <form method="post" action="{% url 'maest_app:eliminar_etiqueta' 0 %}" id="deleteForm">
+                    {% csrf_token %}
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-danger">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mb-5"></div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $('#deleteModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var nombre = button.data('nombre');
+        var modal = $(this);
+        modal.find('#etiquetaNombre').text(nombre);
+        modal.find('#deleteForm').attr('action', "{% url 'maest_app:eliminar_etiqueta' 0 %}".replace('0', id));
+    });
+</script>
+{% endblock %}

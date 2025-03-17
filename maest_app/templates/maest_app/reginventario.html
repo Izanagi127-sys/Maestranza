@@ -1,0 +1,57 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Registrar Inventario{% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center">
+    <div class="card mt-5 mb-5 shadow" style="width: 50%;">
+        <div class="card-header bg-dark text-white">
+            <h3 class="my-2 text-center">Registro de Inventario</h3>
+        </div>
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-dark mt-3">Registrar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="mb-5"></div>
+
+<!-- Modal de éxito -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Registro exitoso</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                El producto ha sido ingresado correctamente.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeModalButton">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function() {
+        {% if success %}
+        $('#successModal').modal('show');
+        $('#successModal').on('hidden.bs.modal', function () {
+            window.location.href = "{% url 'maest_app:reginventario' %}";
+        });
+        {% endif %}
+    });
+</script>
+{% endblock %}

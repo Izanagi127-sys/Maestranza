@@ -1,0 +1,26 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Generar Informes{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12 text-center mb-3">
+            <a href="{% url 'maest_app:informe_tendencia' %}" class="btn btn-dark btn-lg report-button-wide">Generar Informe de Tendencia de Consumo</a>
+        </div>
+        <div class="col-md-12 text-center mb-3">
+            <a href="{% url 'maest_app:informe_niveles_stock' %}" class="btn btn-dark btn-lg report-button-wide">Generar Informe de Niveles de Stock</a>
+        </div>
+    </div>
+    <br><br>
+        <h2 class="text-center mb-4">Generación de Informes de Inventario</h2>
+            <div class="col-md-12 text-center mb-3">
+                <a href="{% url 'maest_app:exportar_pdf' %}" class="btn btn-danger btn-lg report-button">Exportar Informe en PDF</a>
+            </div>
+            <div class="col-md-12 text-center mb-3">
+                <a href="{% url 'maest_app:exportar_excel' %}" class="btn btn-success btn-lg report-button">Exportar Informe en Excel</a>
+            </div>
+</div>
+
+
+{% endblock %}

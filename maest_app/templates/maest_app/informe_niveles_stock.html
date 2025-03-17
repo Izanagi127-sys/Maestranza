@@ -1,0 +1,31 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Informe de Niveles de Stock{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Informe de Niveles de Stock</h2>
+    <div class="table-responsive shadow">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Umbral de Stock Bajo</th>
+                    <th>Ubicación</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for producto in productos %}
+                <tr>
+                    <td>{{ producto.nom_producto }}</td>
+                    <td>{{ producto.stock }}</td>
+                    <td>{{ producto.umbral_stock_bajo }}</td>
+                    <td>{{ producto.ubicacion }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

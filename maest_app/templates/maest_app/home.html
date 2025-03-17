@@ -1,0 +1,75 @@
+{% extends 'maest_app/base.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<style>
+  .header-text {
+    color: #8B4513;  /* Color café */
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .sub-header-text {
+    color: #8B4513;  /* Color café */
+    font-weight: bold;
+    font-style: italic;
+  }
+  .content-wrapper {
+    margin-top: 20px;
+  }
+  .welcome-text {
+    color: #8B4513;  /* Color café */
+    font-weight: bold;
+  }
+  .welcome-description {
+    color: #000000;  /* Color negro */
+    font-size: 1.2rem;  /* Ajusta este valor según tus necesidades */
+    margin-left: 100px;  /* Ajusta este valor según tus necesidades */
+    margin-right: 100px;  /* Ajusta este valor según tus necesidades */
+  }
+  .welcome-message {
+    margin-bottom: 0px;  /* Reduce el espacio antes del footer */
+  }
+</style>
+
+<div class="text-center mt-3 content-wrapper">
+  <h1 class="header-text">Maestranzas Unidos S.A.</h1>
+  <h4 class="sub-header-text">Impulsando la Innovación en la Industria Minera</h4>
+</div>
+<br>
+<div class="container my-3 content-wrapper">
+    <div id="carouselExampleControls" class="carousel slide mx-5" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="https://imgur.com/pW7BEof.png" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://imgur.com/CMBCOiA.png" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://imgur.com/dZ1dLtA.png" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://imgur.com/pW7BEof.png" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<br>
+<div class="container mt-3 content-wrapper welcome-message">
+    <div class="text-center">
+        <h1 class="welcome-text">Bienvenido a Maestranzas Unidos S.A.</h1>
+        <p class="welcome-description">Nos especializamos en la fabricación y mantenimiento de equipos pesados, apoyando el crecimiento de la industria
+            minera en Atacama. Navegue por nuestro sitio para descubrir nuestros productos y servicios.</p>
+    </div>
+</div>
+{% endblock %}
